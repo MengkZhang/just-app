@@ -1,6 +1,22 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        //正式签名AndroidStudio2.3以后 release版本提示安装失败没有签名的解决方案
+        //Build -> Generate Signed Bundle or APK -> APK -> Next -> Next -> release -> Signature Versions只勾V1 不选V2
+        release {
+            keyAlias 'justapp'
+            keyPassword 'justapp2019'
+            storeFile file('justapp.jks')
+            storePassword 'justapp2019'
+        }
+        debug {
+            keyAlias 'justapp'
+            keyPassword 'justapp2019'
+            storeFile file('justapp.jks')
+            storePassword 'justapp2019'
+        }
+    }
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.mengk.justapp"
@@ -12,14 +28,29 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+            //Zipalign优化
+            zipAlignEnabled true
+            //设置shrinkResources属性，将会在 APK 中移除任何并非直接引用的资源。这时如果我们使用反射机制间接地访问资源，就会导致问题
+            shrinkResources true
         }
+        debug {
+            //不混淆
+            minifyEnabled false
+            signingConfig signingConfigs.debug
+        }
+    }
+    //关闭清单文件xml中警告-检索的功能
+    lintOptions {
+        disable 'GoogleAppIndexingWarning'
+        baseline file("lint-baseline.xml")
     }
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.support:appcompat-v7:28.0.0'
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     testImplementation 'junit:junit:4.12'
