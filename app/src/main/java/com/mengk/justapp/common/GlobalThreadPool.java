@@ -1,4 +1,4 @@
-package com.mengk.justapp.module;
+package com.mengk.justapp.common;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;

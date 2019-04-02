@@ -6,10 +6,10 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 
-import com.mengk.justapp.module.GlobalThreadPool;
-import com.mengk.justapp.module.PreferencesUtils;
+import com.mengk.justapp.common.GlobalThreadPool;
+import com.mengk.justapp.common.PreferencesUtils;
+import com.mengk.justapp.module.MainActivity;
 
 /**
  * 闪屏页

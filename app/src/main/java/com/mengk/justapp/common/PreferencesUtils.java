@@ -1,4 +1,4 @@
-package com.mengk.justapp.module;
+package com.mengk.justapp.common;
 
 import android.content.Context;
 import android.content.SharedPreferences;
