@@ -9,6 +9,9 @@ import android.os.Bundle;
 
 import com.mengk.justapp.common.GlobalThreadPool;
 import com.mengk.justapp.common.PreferencesUtils;
+import com.mengk.justapp.common.notch.NotchProperty;
+import com.mengk.justapp.common.notch.NotchTools;
+import com.mengk.justapp.common.notch.OnNotchCallBack;
 import com.mengk.justapp.module.MainActivity;
 
 /**
@@ -72,6 +75,13 @@ public class SplashActivity extends AppCompatActivity {
         getWindow().setBackgroundDrawable(null);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+        //适配Android8.0刘海屏
+        NotchTools.getFullScreenTools().fullScreenUseStatus(this, new OnNotchCallBack() {
+            @Override
+            public void onNotchPropertyCallback(NotchProperty notchProperty) {
+
+            }
+        });
         //延迟两秒到主页
         mHandler.sendMessageDelayed(Message.obtain(), 2000);
     }
