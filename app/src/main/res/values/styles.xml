@@ -8,4 +8,9 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="SplashThemeFull" parent="Theme.AppCompat.Light.NoActionBar">
+        <!--设置背景图片-->
+        <item name="android:background">@drawable/bg_splash_full_screen</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
 </resources>
